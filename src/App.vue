@@ -1,12 +1,25 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { onMounted, defineComponent } from "vue";
+
+export default defineComponent({
+  name: "App",
+  setup: () => {
+    onMounted(() => {
+      console.log("App mounted");
+    });
+  },
+});
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <suspense>
+    <template #default>
+      <img alt="Vue logo" src="./assets/logo.png" />
+    </template>
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </suspense>
 </template>
 
 <style>

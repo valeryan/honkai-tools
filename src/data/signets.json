@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "slug": "silverwing-n-ex",
+    "flameChaser": "Elysia",
+    "name": "Exclusive Signets",
+    "signets": [
+      {
+        "id": 1,
+        "name": "Blessing of Grey Falcon",
+        "description": "Restore SP per second. Scatter barrier enables Combo ATK",
+        "type": "Exclusive"
+      },
+      {
+        "id": 2,
+        "name": "Blessing of Phantom Plumes",
+        "description": "After using support, tapping ATK triggers QTE",
+        "type": "Exclusive"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "dea-anchora",
+    "flameChaser": "Elysia",
+    "name": "Exclusive Signets",
+    "signets": [
+      {
+        "id": 1,
+        "name": "Blessing of Grey Falcon",
+        "description": "Restore SP per second. Scatter barrier enables Combo ATK",
+        "type": "Exclusive"
+      },
+      {
+        "id": 2,
+        "name": "Blessing of Phantom Plumes",
+        "description": "After using support, tapping ATK triggers QTE",
+        "type": "Exclusive"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "hofs",
+    "flameChaser": "Elysia",
+    "name": "Exclusive Signets",
+    "signets": [
+      {
+        "id": 1,
+        "name": "Blessing of Reburn",
+        "description": "Evading clears heat",
+        "type": "Exclusive"
+      },
+      {
+        "id": 2,
+        "name": "Blessing of Heatflow",
+        "description": "Black hole deals bonus fire DMG",
+        "type": "Exclusive"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "kevin",
+    "flameChaser": "Kevin",
+    "name": "Signet of Deliverance",
+    "signets": [
+      {
+        "id": 1,
+        "name": "Goblet of the Giver",
+        "description": "Ultimate boosts Total DMG by 35% for 5s",
+        "type": "normal"
+      },
+      {
+        "id": 2,
+        "name": "Pendant of the Watcher",
+        "description": "Ultimate boosts Physical DMG by 30% for 5s",
+        "type": "normal"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "eden",
+    "flameChaser": "Eden",
+    "name": "Signet of Gold",
+    "signets": [
+      {
+        "id": 1,
+        "name": "Recitatif of Eden",
+        "description": "Every 10 SP left boosts Total DMG by 3.0%",
+        "type": "normal"
+      },
+      {
+        "id": 2,
+        "name": "Recitatif of Creeks",
+        "description": "Every 10 SP left boosts Physical & Elemental DMG by 2.5%.",
+        "type": "normal"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "kalpas",
+    "flameChaser": "Kalpas",
+    "name": "Signet of Decimation",
+    "signets": [
+      {
+        "id": 1,
+        "name": "Blade, Grave, and Scar",
+        "description": "Every 100 HP loss boosts Total DMG by 1.0%",
+        "type": "normal"
+      },
+      {
+        "id": 2,
+        "name": "Bone, Blood, and Ribbon",
+        "description": "Every 100 HP loss boosts Physical & Elemental DMG by 0.8%",
+        "type": "normal"
+      }
+    ]
+  }
+]

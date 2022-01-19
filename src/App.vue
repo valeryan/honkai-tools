@@ -2,11 +2,15 @@
 import { onMounted, defineComponent } from "vue";
 import { appStore } from "./store/app-store";
 import valkyries from "./data/valkyries.json";
+import recommendations from "./data/recommendations.json";
+import signets from "./data/signets.json";
 
 export default defineComponent({
   name: "App",
   setup: () => {
     appStore.setValkyries(valkyries);
+    appStore.setRecommendations(recommendations);
+    appStore.setSignets(signets);
 
     onMounted(() => {
       console.log("App mounted");

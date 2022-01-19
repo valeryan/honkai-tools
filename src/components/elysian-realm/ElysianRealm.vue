@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { appStore } from "../../store/app-store";
+import Recommendation from "./Recommendation.vue";
 
 export default defineComponent({
   name: "ElysianRealm",
@@ -16,6 +17,14 @@ export default defineComponent({
       const valk = this.appState.valkyries?.find((v) => v.slug == slug);
       return valk;
     },
+    showRecommends() {
+      const slug = this.$route.params.slug;
+      const recommendation = this.appState.recommendations?.find((v) => v.slug == slug);
+      return recommendation;
+    },
+  },
+  components: {
+    Recommendation
   },
   setup: () => {
     return {
@@ -35,7 +44,7 @@ export default defineComponent({
       </router-link>
     </li>
   </ul>
-  <h1 v-if="showValkyrie">{{ showValkyrie.name }}</h1>
+  <Recommendation v-if="showValkyrie" :valkyrie="showValkyrie"></Recommendation>
 </template>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
-export default interface Valkyrie extends Object {
-  id: number;
-  name: string;
+import BaseModel from "./model-base";
+
+export default interface Valkyrie extends BaseModel {
   slug: string;
 }

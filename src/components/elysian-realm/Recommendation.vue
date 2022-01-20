@@ -1,8 +1,9 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Signet } from "../../models/signet";
+import { Signet, SignetGroup } from "../../models/signet";
 import Valkyrie from "../../models/valkyrie";
 import { appStore } from "../../store/app-store";
+import Signets from "./Signets.vue";
 
 export default defineComponent({
   name: "Recommendation",
@@ -12,35 +13,47 @@ export default defineComponent({
       require: true,
     },
   },
+  components: {
+    Signets
+  },
   methods: {
-    getExclusive() {
-      const exclusive = this.recommendation?.exclusive
-      if (exclusive === undefined) {
+    getSignetGroup(slug: string): SignetGroup | undefined {
+      const choiceGroup = this.getChoiceGroupBySlug(slug);
+      const signetGroup = this.getSignetGroupBySlug(choiceGroup?.signet);
+      if (choiceGroup === undefined || signetGroup === undefined) {
         return;
       }
-      let signets = this.getSignetsBySlug(exclusive.signet);
-
-      if (signets === undefined) {
-        return;
-      }
-      signets = signets.map(signet => {
-        const data = exclusive.choices.find((c) => c.signetId == signet.id);
+      const signets: Signet[] = signetGroup.signets.map(signet => {
+        const data = choiceGroup.choices.find((c: { signetId: number; }) => c.signetId == signet.id);
         const choice = data ? data.choice : "No";
-        return {
-          id: signet.id,
-          name: signet.name,
-          description: signet.description,
-          type: signet.type,
-          choice: choice
-        };
+        return { ...signet, choice };
       });
 
-      return signets;
+      return { ...signetGroup, signets };
     },
-    getSignetsBySlug(slug: string) {
-      const groups = this.appState.signetGroups.find((s) => s.slug == slug);
-
-      return groups?.signets;
+    getChoiceGroupBySlug(slug: string) {
+      if (this.recommendation === undefined) {
+        return;
+      }
+      // Typescript does not like my string keys
+      switch (slug) {
+        case "exclusive":
+          return this.recommendation.exclusive;
+        case "signet1":
+          return this.recommendation.signet1;
+        case "signet2":
+          return this.recommendation.signet2;
+        case "signet3":
+          return this.recommendation.signet3;
+        default:
+          return;
+      }
+    },
+    getSignetGroupBySlug(slug: string | undefined) {
+      if (slug === undefined) {
+        return;
+      }
+      return this.appState.signetGroups.find((s) => s.slug == slug);
     }
   },
   watch: {
@@ -64,18 +77,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
-  <h2>Exclusive Signets</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Choice</th>
-    </tr>
-    <tr v-for="signet in getExclusive()">
-      <td>{{ signet.name }}</td>
-      <td>{{ signet.description }}</td>
-      <td>{{ signet.choice }}</td>
-    </tr>
-  </table>
+  <div id="recommendations" v-if="recommendation">
+    <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
+    <div class="signetGroup">
+      <Signets :signet-group="getSignetGroup('exclusive')"></Signets>
+      <Signets :signet-group="getSignetGroup('signet1')"></Signets>
+      <Signets :signet-group="getSignetGroup('signet2')"></Signets>
+      <Signets :signet-group="getSignetGroup('signet3')"></Signets>
+    </div>
+  </div>
+  <div id="recommendations" v-else>
+    <h1>{{ valkyrie?.name }}</h1>
+    <p>This Valkyrie does not have any recommendations.</p>
+  </div>
 </template>

@@ -36,6 +36,12 @@
         "name": "Blessing of Phantom Plumes",
         "description": "After using support, tapping ATK triggers QTE",
         "type": "Exclusive"
+      },
+      {
+        "id": 3,
+        "name": "Blessing of Sheen",
+        "description": "Ultimates do not suspend Astrum consumption",
+        "type": "Exclusive"
       }
     ]
   },
@@ -96,6 +102,25 @@
         "name": "Recitatif of Creeks",
         "description": "Every 10 SP left boosts Physical & Elemental DMG by 2.5%.",
         "type": "normal"
+      },
+      {
+        "id": 3,
+        "name": "Echo of Gold",
+        "description": "Echo some Gold",
+        "type": "nexus"
+      },
+      {
+        "id": 4,
+        "name": "Aria of Gold",
+        "description": "Aria some Gold",
+        "type": "nexus"
+      },
+      {
+        "id": 5,
+        "name": "Echo of Withered Soil",
+        "description": "After lasting over 7s, boost SP cap and restore SP/s till it ends",
+        "type": "enhanced",
+        "nexus": 3
       }
     ]
   },

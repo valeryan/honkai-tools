@@ -12,15 +12,10 @@ export default defineComponent({
     },
   },
   computed: {
-    showValkyrie() {
+    foundValkyrie() {
       const slug = this.$route.params.slug;
       const valk = this.appState.valkyries?.find((v) => v.slug == slug);
       return valk;
-    },
-    showRecommends() {
-      const slug = this.$route.params.slug;
-      const recommendation = this.appState.recommendations?.find((v) => v.slug == slug);
-      return recommendation;
     },
   },
   components: {
@@ -36,15 +31,17 @@ export default defineComponent({
 
 <template>
   <h1>Elysian Realm</h1>
-  <ul>
-    <li v-for="valk in appState.valkyries" :key="valk.id">
-      <router-link :to="{ name: 'ElysianRealm', params: { slug: valk.slug } }">
-        <img class="valk-img" :alt="valk.name" :src="getImageUrl(valk.slug)" />
-        {{ valk.name }}
-      </router-link>
-    </li>
-  </ul>
-  <Recommendation v-if="showValkyrie" :valkyrie="showValkyrie"></Recommendation>
+  <nav>
+    <ul>
+      <li v-for="valk in appState.valkyries" :key="valk.id">
+        <router-link :to="{ name: 'ElysianRealm', params: { slug: valk.slug } }">
+          <img class="valk-img" :alt="valk.name" :src="getImageUrl(valk.slug)" />
+          {{ valk.name }}
+        </router-link>
+      </li>
+    </ul>
+  </nav>
+  <Recommendation v-if="foundValkyrie" :valkyrie="foundValkyrie"></Recommendation>
 </template>
 
 <style lang="scss">

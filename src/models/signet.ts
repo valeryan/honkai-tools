@@ -8,6 +8,7 @@ export interface SignetGroup extends BaseModel {
 export interface Signet extends BaseModel {
   description: string;
   type: string;
+  nexus?: number;
   choice?: string;
 }
 

@@ -1,6 +1,6 @@
 import { Recommendation } from "../models/recommendation";
 import { SignetGroup } from "../models/signet";
-import Valkyrie from "../models/valkyrie";
+import { Valkyrie } from "../models/valkyrie";
 import { Store } from "./store";
 
 interface AppData extends Object {

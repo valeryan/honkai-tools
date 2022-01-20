@@ -1,4 +1,4 @@
-export default interface BaseModel extends Object {
+export interface BaseModel extends Object {
   id: number;
   name: string;
   description?: string;

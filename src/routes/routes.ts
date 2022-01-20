@@ -1,15 +1,19 @@
-import Home from '../components/Home.vue'
-import ElysianRealm from '../components/elysian-realm/ElysianRealm.vue'
+import HomePage from "../components/HomePage.vue";
+import ElysianRealm from "../components/ElysianRealm.vue";
 
-const NotFound = { template: '<div>404 Not Found</div>' }
+const NotFound = { template: "<div>404 Not Found</div>" };
 
 export const mainRoutes = [
-  { path: '/', component: Home },
-  { path: '/elysian-realm', component: ElysianRealm },
-  { path: '/elysian-realm/:slug', name: 'ElysianRealm', component: ElysianRealm },
+  { path: "/", component: HomePage },
+  { path: "/elysian-realm", component: ElysianRealm },
   {
-    path: '/:pathMatch(.*)*',
+    path: "/elysian-realm/:slug",
+    name: "ElysianRealm",
+    component: ElysianRealm,
+  },
+  {
+    path: "/:pathMatch(.*)*",
     component: NotFound,
-    name: 'NotFound'
-  }
+    name: "NotFound",
+  },
 ];

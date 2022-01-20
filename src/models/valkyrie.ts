@@ -1,5 +1,5 @@
-import BaseModel from "./model-base";
+import { BaseModel } from "./base-model";
 
-export default interface Valkyrie extends BaseModel {
+export interface Valkyrie extends BaseModel {
   slug: string;
 }

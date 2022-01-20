@@ -1,11 +1,11 @@
-import { createApp } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import App from './App.vue';
-import { mainRoutes } from './routes/routes';
+import { createApp } from "vue";
+import { createRouter, createWebHashHistory } from "vue-router";
+import App from "./App.vue";
+import { mainRoutes } from "./routes/routes";
 
-//import Bootstrap
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import Bootstrap
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const base = import.meta.env.BASE_URL;
 
@@ -18,5 +18,5 @@ const router = createRouter({
 
 const app = createApp(App);
 
-app.use(router)
-app.mount('#app');
+app.use(router);
+app.mount("#app");

@@ -1,12 +1,12 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Signet, SignetGroup } from "../../models/signet";
-import Valkyrie from "../../models/valkyrie";
-import { appStore } from "../../store/app-store";
-import Signets from "./Signets.vue";
+import { Signet, SignetGroup } from "../models/signet";
+import { Valkyrie } from "../models/valkyrie";
+import { appStore } from "../store/app-store";
+import ElysianRealmSignetList from "./ElysianRealmSignetList.vue";
 
 export default defineComponent({
-  name: "Recommendation",
+  name: "ElysianRealmRecommend",
   props: {
     valkyrie: {
       type: Object as PropType<Valkyrie>,
@@ -14,7 +14,7 @@ export default defineComponent({
     },
   },
   components: {
-    Signets
+    ElysianRealmSignetList
   },
   methods: {
     getSignetGroup(slug: string): SignetGroup | undefined {
@@ -80,10 +80,10 @@ export default defineComponent({
   <div id="recommendations" v-if="recommendation">
     <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
     <div class="signetGroup">
-      <Signets :signet-group="getSignetGroup('exclusive')"></Signets>
-      <Signets :signet-group="getSignetGroup('signet1')"></Signets>
-      <Signets :signet-group="getSignetGroup('signet2')"></Signets>
-      <Signets :signet-group="getSignetGroup('signet3')"></Signets>
+      <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive')"/>
+      <ElysianRealmSignetList :signet-group="getSignetGroup('signet1')"/>
+      <ElysianRealmSignetList :signet-group="getSignetGroup('signet2')"/>
+      <ElysianRealmSignetList :signet-group="getSignetGroup('signet3')"/>
     </div>
   </div>
   <div id="recommendations" v-else>

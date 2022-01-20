@@ -1,9 +1,9 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Signet, SignetGroup } from "../../models/signet";
+import { Signet, SignetGroup } from "../models/signet";
 
 export default defineComponent({
-  name: "Signets",
+  name: "ElysianRealmSignetList",
   props: {
     signetGroup: {
       type: Object as PropType<SignetGroup>,
@@ -31,7 +31,7 @@ export default defineComponent({
         <th>Description</th>
         <th>Choice</th>
       </tr>
-      <template v-for="signet in signetGroup?.signets">
+      <template v-for="signet in signetGroup?.signets" :key="signet.id">
         <tr v-if="shouldShow(signet)">
           <td>{{ signet.name }}</td>
           <td>{{ signet.description }}</td>

@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { appStore } from "../../store/app-store";
-import Recommendation from "./Recommendation.vue";
+import { appStore } from "../store/app-store";
+import ElysianRealmRecommend from "./ElysianRealmRecommend.vue";
 
 export default defineComponent({
   name: "ElysianRealm",
   methods: {
     getImageUrl: (slug: string) => {
-      return new URL(`../../assets/valkyries/${slug}.png`, import.meta.url)
+      return new URL(`../assets/valkyries/${slug}.png`, import.meta.url)
         .href;
     },
   },
@@ -19,7 +19,7 @@ export default defineComponent({
     },
   },
   components: {
-    Recommendation
+    ElysianRealmRecommend
   },
   setup: () => {
     return {
@@ -41,7 +41,7 @@ export default defineComponent({
       </li>
     </ul>
   </nav>
-  <Recommendation v-if="foundValkyrie" :valkyrie="foundValkyrie"></Recommendation>
+  <ElysianRealmRecommend v-if="foundValkyrie" :valkyrie="foundValkyrie" />
 </template>
 
 <style lang="scss">

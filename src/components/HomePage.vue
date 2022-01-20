@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 import { appStore } from "../store/app-store";
 
 export default defineComponent({
-  name: "Home",
+  name: "HomePage",
   setup: () => {
     return {
       appState: appStore.getState(),

@@ -11,11 +11,24 @@ export default defineComponent({
     },
   },
   methods: {
-    shouldShow(signet: Signet) {
+    shouldShow(signet: Signet): boolean {
+      // Only Show nexus signets that are recommended
       if (signet.type == 'nexus' && (!signet.choice || signet.choice == "No"))
       {
         return false;
       }
+
+      // Only show enhanced signets if the nexus they belong to is recommended
+      if (signet.type == 'enhanced')
+      {
+        const nexus = this.signetGroup?.signets.find(n => n.id == signet.nexus);
+
+        if (!nexus || !nexus.choice || nexus.choice == "No")
+        {
+          return false;
+        }
+      }
+
       return true;
     }
   }

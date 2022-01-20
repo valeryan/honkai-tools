@@ -121,6 +121,13 @@
         "description": "After lasting over 7s, boost SP cap and restore SP/s till it ends",
         "type": "enhanced",
         "nexus": 3
+      },
+      {
+        "id": 5,
+        "name": "Aria of Dawn",
+        "description": "Trigger Thunder Symphony after 3 Lightning of Aria bolts.",
+        "type": "enhanced",
+        "nexus": 4
       }
     ]
   },

@@ -60,7 +60,7 @@
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": "Filler"
         },
         {
           "id": 3,
@@ -69,15 +69,19 @@
         }
       ]
     },
-    "sigil": {
-      "early": { "slot1": 1 },
-      "mid": { "slot1": 1, "slot2": 2 },
-      "late": { "slot1": 2 }
-    },
-    "supports": {
-      "early": { "slot1": 1, "slot2": 3 },
-      "mid": { "slot1": 2, "slot2": 3 },
-      "late": { "slot1": 1, "slot2": 3 }
+    "setup": {
+      "early": {
+        "emblem": {"slot1": 1 },
+        "support": { "slot1": 1, "slot2": 3 }
+      },
+      "mid": {
+        "emblem": { "slot1": 1, "slot2": 2 },
+        "support": { "slot1": 2, "slot2": 3 }
+      },
+      "late": {
+        "emblem": {"slot1": 1 },
+        "support": { "slot1": 1, "slot2": 3 }
+      }
     }
   },
   {
@@ -145,15 +149,19 @@
         }
       ]
     },
-    "sigil": {
-      "early": { "slot1": 1 },
-      "mid": { "slot1": 1, "slot2": 2 },
-      "late": { "slot1": 2 }
-    },
-    "supports": {
-      "early": { "slot1": 1, "slot2": 3 },
-      "mid": { "slot1": 2, "slot2": 3 },
-      "late": { "slot1": 1, "slot2": 3 }
+    "setup": {
+      "early": {
+        "emblem": {"slot1": 1 },
+        "support": { "slot1": 1, "slot2": 3 }
+      },
+      "mid": {
+        "emblem": { "slot1": 1, "slot2": 2 },
+        "support": { "slot1": 2, "slot2": 3 }
+      },
+      "late": {
+        "emblem": {"slot1": 1 },
+        "support": { "slot1": 1, "slot2": 3 }
+      }
     }
   }
 ]

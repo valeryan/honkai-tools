@@ -4,6 +4,8 @@ import { appStore } from "./store/app-store";
 import valkyries from "./data/valkyries.json";
 import recommendations from "./data/recommendations.json";
 import signets from "./data/signets.json";
+import emblems from "./data/emblems.json";
+import supports from "./data/supports.json";
 
 export default defineComponent({
   name: "App",
@@ -11,6 +13,8 @@ export default defineComponent({
     appStore.setValkyries(valkyries);
     appStore.setRecommendations(recommendations);
     appStore.setSignets(signets);
+    appStore.setEmblems(emblems);
+    appStore.setSupports(supports);
 
     onMounted(() => {
       console.log("App mounted");

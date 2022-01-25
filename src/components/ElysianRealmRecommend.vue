@@ -4,6 +4,7 @@ import { Signet, SignetGroup } from "../models/signet";
 import { Valkyrie } from "../models/valkyrie";
 import { appStore } from "../store/app-store";
 import ElysianRealmSignetList from "./ElysianRealmSignetList.vue";
+import ElysianRealmSetup from "./ElysianRealmSetup.vue";
 
 export default defineComponent({
   name: "ElysianRealmRecommend",
@@ -14,8 +15,9 @@ export default defineComponent({
     },
   },
   components: {
-    ElysianRealmSignetList
-  },
+    ElysianRealmSignetList,
+    ElysianRealmSetup
+},
   methods: {
     getSignetGroup(slug: string): SignetGroup | undefined {
       const choiceGroup = this.getChoiceGroupBySlug(slug);
@@ -79,6 +81,9 @@ export default defineComponent({
 <template>
   <div id="recommendations" v-if="recommendation">
     <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
+    <div class="setupGroup">
+      <ElysianRealmSetup :setup-group="recommendation.setup"/>
+    </div>
     <div class="signetGroup">
       <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive')"/>
       <ElysianRealmSignetList :signet-group="getSignetGroup('signet1')"/>

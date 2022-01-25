@@ -10,14 +10,20 @@ export interface ChoiceGroup extends Object {
 }
 
 export interface Slots extends Object {
+  [index: string]: any;
   slot1: number;
   slot2?: number;
 }
 
+export interface SetupTypes extends Object {
+  emblem: Slots,
+  support: Slots
+}
+
 export interface GamePeriod extends Object {
-  early: Slots;
-  mid: Slots;
-  late: Slots;
+  early: SetupTypes;
+  mid: SetupTypes;
+  late: SetupTypes;
 }
 
 export interface Recommendation extends Object {
@@ -29,6 +35,5 @@ export interface Recommendation extends Object {
   signet1: ChoiceGroup;
   signet2: ChoiceGroup;
   signet3: ChoiceGroup;
-  sigil: GamePeriod;
-  supports: GamePeriod;
+  setup: GamePeriod;
 }

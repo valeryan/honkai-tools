@@ -35,8 +35,8 @@ export default defineComponent({
     <ul>
       <li v-for="valk in appState.valkyries" :key="valk.id">
         <router-link :to="{ name: 'ElysianRealm', params: { slug: valk.slug } }">
-          <img class="valk-img" :alt="valk.name" :src="getImageUrl(valk.slug)" />
-          {{ valk.name }}
+          <img class="valk-img" :alt="valk.battleSuit" :src="getImageUrl(valk.slug)" />
+          {{ valk.battleSuit }}
         </router-link>
       </li>
     </ul>

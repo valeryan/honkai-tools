@@ -1,17 +1,12 @@
 <script lang="ts">
 import { onMounted, defineComponent } from "vue";
 import { appStore } from "./store/app-store";
-import valkyries from "./data/valkyries.json";
-import recommendations from "./data/recommendations.json";
-import signets from "./data/signets.json";
-import emblems from "./data/emblems.json";
-import supports from "./data/supports.json";
+import { valkyries, signets, emblems, supports } from "./data";
 
 export default defineComponent({
   name: "App",
   setup: () => {
     appStore.setValkyries(valkyries);
-    appStore.setRecommendations(recommendations);
     appStore.setSignets(signets);
     appStore.setEmblems(emblems);
     appStore.setSupports(supports);
@@ -27,7 +22,9 @@ export default defineComponent({
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/"><img alt="Vue logo" src="./assets/honkai_web.png" /></router-link>
+        <router-link class="navbar-brand" to="/">
+          <img alt="Vue logo" src="./assets/honkai_web.png" />
+        </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -55,13 +52,17 @@ export default defineComponent({
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              >
-                Dropdown
-              </a>
+              >Dropdown</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><router-link class="dropdown-item" to="/">Action</router-link></li>
-                <li><router-link class="dropdown-item" to="/">Another action</router-link></li>
-                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <router-link class="dropdown-item" to="/">Action</router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item" to="/">Another action</router-link>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
                 <li>
                   <router-link class="dropdown-item" to="/">Something else here</router-link>
                 </li>

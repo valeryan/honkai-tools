@@ -40,7 +40,7 @@ class AppStore extends Store<AppData> {
     this.state.emblems = emblems;
   }
 
-  setSupports(supports: Emblem[]) {
+  setSupports(supports: Support[]) {
     this.state.supports = supports;
   }
 }

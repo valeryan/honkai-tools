@@ -5,6 +5,7 @@ import { Valkyrie } from "../models/valkyrie";
 import { appStore } from "../store/app-store";
 import ElysianRealmSignetList from "./ElysianRealmSignetList.vue";
 import ElysianRealmSetup from "./ElysianRealmSetup.vue";
+import { recommendLoader } from "../recommends";
 
 export default defineComponent({
   name: "ElysianRealmRecommend",
@@ -17,7 +18,7 @@ export default defineComponent({
   components: {
     ElysianRealmSignetList,
     ElysianRealmSetup
-},
+  },
   methods: {
     getSignetGroup(slug: string): SignetGroup | undefined {
       const choiceGroup = this.getChoiceGroupBySlug(slug);
@@ -59,17 +60,20 @@ export default defineComponent({
     }
   },
   watch: {
-    '$route.params': {
-      handler(newValue) {
-        const { slug } = newValue
-        this.recommendation = this.appState.recommendations.find((r) => r.slug == slug);
-      },
+    valkyrie: {
       immediate: true,
+      deep: true,
+      handler(newValue) {
+        recommendLoader.load(newValue);
+        this.recommendation = this.appState.recommendations[0]
+      }
     }
   },
   setup: (props) => {
+    recommendLoader.load(props.valkyrie);
+
     const state = appStore.getState();
-    const recommendation = state.recommendations.find((r) => r.slug == props.valkyrie?.slug);
+    const recommendation = state.recommendations[0];
     return {
       recommendation: recommendation,
       appState: state,
@@ -80,15 +84,21 @@ export default defineComponent({
 
 <template>
   <div id="recommendations" v-if="recommendation">
-    <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
-    <div class="setupGroup">
-      <ElysianRealmSetup :setup-group="recommendation.setup"/>
-    </div>
-    <div class="signetGroup">
-      <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive')"/>
-      <ElysianRealmSignetList :signet-group="getSignetGroup('signet1')"/>
-      <ElysianRealmSignetList :signet-group="getSignetGroup('signet2')"/>
-      <ElysianRealmSignetList :signet-group="getSignetGroup('signet3')"/>
+    <div class="container card">
+      <div class="row">
+        <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
+      </div>
+      <div class="row">
+        <div class="setupGroup col">
+          <ElysianRealmSetup :setup-group="recommendation.setup" />
+        </div>
+        <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive')" />
+      </div>
+      <div class="signetGroup row">
+        <ElysianRealmSignetList :signet-group="getSignetGroup('signet1')" />
+        <ElysianRealmSignetList :signet-group="getSignetGroup('signet2')" />
+        <ElysianRealmSignetList :signet-group="getSignetGroup('signet3')" />
+      </div>
     </div>
   </div>
   <div id="recommendations" v-else>
@@ -96,3 +106,9 @@ export default defineComponent({
     <p>This Valkyrie does not have any recommendations.</p>
   </div>
 </template>
+
+<style lang="scss">
+#recommendations {
+  margin: 50px 0;
+}
+</style>

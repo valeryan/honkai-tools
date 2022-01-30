@@ -12,13 +12,13 @@ export default defineComponent({
   },
   methods: {
     shouldShowSignet(signet: Signet): boolean {
-      // Only Show nexus signets that are recommended
-      if (signet.type == 'nexus' && (!signet.choice || signet.choice == "No")) {
+      // Only Show core nexus signets that are recommended
+      if (signet.type.toLowerCase() == 'core' && (!signet.choice || signet.choice == "No")) {
         return false;
       }
 
       // Only show enhanced signets if the nexus they belong to is recommended
-      if (signet.type == 'enhanced') {
+      if (signet.type.toLowerCase() == 'enhanced') {
         const nexus = this.signetGroup?.signets.find(n => n.id == signet.nexus);
 
         if (!nexus || !nexus.choice || nexus.choice == "No") {
@@ -33,37 +33,71 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="signets">
-    <h2>{{ signetGroup?.flameChaser }} - {{ signetGroup?.name }}</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="signet-name">Name</th>
-          <th class="signet-desc">Description</th>
-          <th class="signet-choice">Choice</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="signets col">
+    <div class="card">
+      <h2>{{ signetGroup?.flameChaser }} - {{ signetGroup?.name }}</h2>
+      <ul class="list-group list-group-flush">
         <template v-for="signet in signetGroup?.signets" :key="signet.id">
-          <tr v-if="shouldShowSignet(signet)">
-            <td class="signet-name">{{ signet.name }}</td>
-            <td class="signet-desc">{{ signet.description }}</td>
-            <td class="signet-choice">{{ signet.choice }}</td>
-          </tr>
+          <li
+            v-if="shouldShowSignet(signet)"
+            class="list-group-item d-flex justify-content-between align-items-start"
+            :class="signet.type.toLowerCase()"
+          >
+            <div class="ms-2 me-auto">
+              <div class="fw-bold">{{ signet.name }}</div>
+              {{ signet.description }}
+            </div>
+            <span
+              class="badge rounded-pill"
+              :class="'bg-' + signet.choice?.toLowerCase()"
+            >{{ signet.choice }}</span>
+          </li>
         </template>
-      </tbody>
-    </table>
+      </ul>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
-  .signet-name {
-    width: 25%;
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+.signet-name {
+  width: 25%;
+}
+.signet-desc {
+  width: 65%;
+}
+.signet-choice {
+  width: 10%;
+}
+.bg-start {
+  background-color: $pink;
+}
+.bg-1st {
+  background-color: $teal;
+}
+.bg-2nd {
+  background-color: $purple;
+}
+.bg-filler {
+  background-color: $gray-500;
+}
+.bg-no {
+  background-color: $black;
+}
+.list-group-item {
+  &.exclusive {
+    color: $light;
+    background-color: $pink-900;
   }
-  .signet-desc {
-    width: 65%;
+  &.normal {
+    color: $light;
+    background-color: $cyan-900;
   }
-  .signet-choice {
-    width: 10%;
+  &.core,
+  &.enhanced {
+    color: $light;
+    background-color: $orange-900;
   }
+}
 </style>

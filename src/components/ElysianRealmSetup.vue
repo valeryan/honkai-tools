@@ -36,39 +36,41 @@ export default defineComponent({
 </script>
 
 <template>
-  <table v-if="setupGroup" class="table table-striped">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Emblem</th>
-        <th>Support 1</th>
-        <th>Support 2</th>
-      </tr>
-    </thead>
+  <div class="card">
+    <table v-if="setupGroup" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Floors</th>
+          <th>Remembrance Sigil</th>
+          <th>Support 1</th>
+          <th>Support 2</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td>Early</td>
-        <td>{{ getEmblem(setupGroup.early.emblem) }}</td>
-        <td>{{ getSupport(setupGroup.early.support, 1) }}</td>
-        <td>{{ getSupport(setupGroup.early.support, 2) }}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>1-8</td>
+          <td>{{ getEmblem(setupGroup.early.emblem) }}</td>
+          <td>{{ getSupport(setupGroup.early.support, 1) }}</td>
+          <td>{{ getSupport(setupGroup.early.support, 2) }}</td>
+        </tr>
 
-      <tr>
-        <td>Mid</td>
-        <td>{{ getEmblem(setupGroup.mid.emblem) }}</td>
-        <td>{{ getSupport(setupGroup.mid.support, 1) }}</td>
-        <td>{{ getSupport(setupGroup.mid.support, 2) }}</td>
-      </tr>
+        <tr>
+          <td>9-12</td>
+          <td>{{ getEmblem(setupGroup.mid.emblem) }}</td>
+          <td>{{ getSupport(setupGroup.mid.support, 1) }}</td>
+          <td>{{ getSupport(setupGroup.mid.support, 2) }}</td>
+        </tr>
 
-      <tr>
-        <td>Late</td>
-        <td>{{ getEmblem(setupGroup.late.emblem) }}</td>
-        <td>{{ getSupport(setupGroup.late.support, 1) }}</td>
-        <td>{{ getSupport(setupGroup.late.support, 2) }}</td>
-      </tr>
-    </tbody>
-  </table>
+        <tr>
+          <td>13-16</td>
+          <td>{{ getEmblem(setupGroup.late.emblem) }}</td>
+          <td>{{ getSupport(setupGroup.late.support, 1) }}</td>
+          <td>{{ getSupport(setupGroup.late.support, 2) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style lang="scss">

@@ -3,6 +3,7 @@ import { appStore } from "../store/app-store";
 
 import { DA } from "./DA";
 import { HOFS } from "./HOFS";
+import { HOT } from "./HOT";
 
 class RecommendLoader {
   load(valkyrie?: Valkyrie) {
@@ -18,6 +19,10 @@ class RecommendLoader {
       case "HOFS":
         appStore.setRecommendations(HOFS);
         break;
+
+        case "HOT":
+          appStore.setRecommendations(HOT);
+          break;
 
       default:
         appStore.setRecommendations([]);

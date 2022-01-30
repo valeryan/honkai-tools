@@ -1,11 +1,12 @@
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { Signet, SignetGroup } from "../models/signet";
 import { Valkyrie } from "../models/valkyrie";
 import { appStore } from "../store/app-store";
 import ElysianRealmSignetList from "./ElysianRealmSignetList.vue";
 import ElysianRealmSetup from "./ElysianRealmSetup.vue";
 import { recommendLoader } from "../recommends";
+import { Recommendation } from "../models/recommendation";
 
 export default defineComponent({
   name: "ElysianRealmRecommend",
@@ -20,8 +21,8 @@ export default defineComponent({
     ElysianRealmSetup
   },
   methods: {
-    getSignetGroup(slug: string): SignetGroup | undefined {
-      const choiceGroup = this.getChoiceGroupBySlug(slug);
+    getSignetGroup(slug: string, recommend: Recommendation): SignetGroup | undefined {
+      const choiceGroup = this.getChoiceGroupBySlug(slug, recommend);
       const signetGroup = this.getSignetGroupBySlug(choiceGroup?.signet);
       if (choiceGroup === undefined || signetGroup === undefined) {
         return;
@@ -34,20 +35,17 @@ export default defineComponent({
 
       return { ...signetGroup, signets };
     },
-    getChoiceGroupBySlug(slug: string) {
-      if (this.recommendation === undefined) {
-        return;
-      }
+    getChoiceGroupBySlug(slug: string, recommend: Recommendation) {
       // Typescript does not like my string keys
       switch (slug) {
         case "exclusive":
-          return this.recommendation.exclusive;
+          return recommend.exclusive;
         case "signet1":
-          return this.recommendation.signet1;
+          return recommend.signet1;
         case "signet2":
-          return this.recommendation.signet2;
+          return recommend.signet2;
         case "signet3":
-          return this.recommendation.signet3;
+          return recommend.signet3;
         default:
           return;
       }
@@ -57,6 +55,18 @@ export default defineComponent({
         return;
       }
       return this.appState.signetGroups.find((s) => s.slug == slug);
+    },
+    setActiveRecommend(recommend: Recommendation) {
+      const active = { ...recommend, isActive: true };
+      const recommends = this.recommends.map(rec => {
+        if (rec.id === active.id) {
+          return { ...rec, isActive: true };
+        }
+        return { ...rec, isActive: false }
+      });
+      this.recommends = recommends;
+      console.log("active");
+      console.log(recommends);
     }
   },
   watch: {
@@ -65,44 +75,63 @@ export default defineComponent({
       deep: true,
       handler(newValue) {
         recommendLoader.load(newValue);
-        this.recommendation = this.appState.recommendations[0]
+        this.recommends = appStore.getState().recommendations;
+        this.setActiveRecommend(this.recommends[0]);
+        console.log("watch");
       }
     }
   },
   setup: (props) => {
     recommendLoader.load(props.valkyrie);
-
     const state = appStore.getState();
-    const recommendation = state.recommendations[0];
+    let recommends = ref(state.recommendations);
+    console.log("setup");
     return {
-      recommendation: recommendation,
       appState: state,
+      recommends
     };
   },
 });
 </script>
 
 <template>
-  <div id="recommendations" v-if="recommendation">
-    <div class="container card">
+  <h1>{{ valkyrie ? valkyrie.battleSuit + " - " + valkyrie.name : ""}}</h1>
+  <template id="tabs" v-if="recommends.length > 1">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" v-for="recommend in recommends" class="nav-item">
+        <a
+          href="#"
+          @click.stop.prevent="setActiveRecommend(recommend)"
+          :class="{ active: recommend.isActive }"
+          class="nav-link"
+        >{{ recommend.variant ? recommend.variant : "Variant " + recommend.id }}</a>
+      </li>
+    </ul>
+  </template>
+  <div v-if="recommends.length > 0" id="recommendations" class="tab-content">
+    <div
+      v-for="recommend in recommends"
+      :key="recommend.id"
+      class="tab-pane fade"
+      :class="{ show: recommend.isActive, active: recommend.isActive }"
+    >
       <div class="row">
-        <h1>{{ valkyrie?.name }}({{ recommendation?.difficulty }}D)</h1>
+        <h2>{{ recommend.difficulty + 'D' }} {{ recommend.variant ? recommend.variant : "" }}</h2>
       </div>
       <div class="row">
         <div class="setupGroup col">
-          <ElysianRealmSetup :setup-group="recommendation.setup" />
+          <ElysianRealmSetup :setup-group="recommend.setup" />
         </div>
-        <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive')" />
+        <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive', recommend)" />
       </div>
       <div class="signetGroup row">
-        <ElysianRealmSignetList :signet-group="getSignetGroup('signet1')" />
-        <ElysianRealmSignetList :signet-group="getSignetGroup('signet2')" />
-        <ElysianRealmSignetList :signet-group="getSignetGroup('signet3')" />
+        <ElysianRealmSignetList :signet-group="getSignetGroup('signet1', recommend)" />
+        <ElysianRealmSignetList :signet-group="getSignetGroup('signet2', recommend)" />
+        <ElysianRealmSignetList :signet-group="getSignetGroup('signet3', recommend)" />
       </div>
     </div>
   </div>
   <div id="recommendations" v-else>
-    <h1>{{ valkyrie?.name }}</h1>
     <p>This Valkyrie does not have any recommendations.</p>
   </div>
 </template>

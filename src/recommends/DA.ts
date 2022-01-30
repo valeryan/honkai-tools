@@ -2,7 +2,7 @@ import { Recommendation } from "../models/recommendation";
 
 export const DA: Recommendation[] = [
   {
-    "id": 2,
+    "id": 1,
     "slug": "DA",
     "difficulty": 130,
     "rank": "S",

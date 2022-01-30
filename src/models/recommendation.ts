@@ -31,6 +31,8 @@ export interface Recommendation extends Object {
   slug: string;
   difficulty: number;
   rank: string;
+  variant?: string;
+  isActive?: boolean;
   exclusive: ChoiceGroup;
   signet1: ChoiceGroup;
   signet2: ChoiceGroup;

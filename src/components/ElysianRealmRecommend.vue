@@ -6,7 +6,7 @@ import { appStore } from "../store/app-store";
 import ElysianRealmSignetList from "./ElysianRealmSignetList.vue";
 import ElysianRealmSetup from "./ElysianRealmSetup.vue";
 import { recommendLoader } from "../recommends";
-import { Recommendation } from "../models/recommendation";
+import { Recommend } from "../models/recommend";
 
 export default defineComponent({
   name: "ElysianRealmRecommend",
@@ -21,7 +21,13 @@ export default defineComponent({
     ElysianRealmSetup
   },
   methods: {
-    getSignetGroup(slug: string, recommend: Recommendation): SignetGroup | undefined {
+    findVariantName(totalRecommends: number, recommend: Recommend): string {
+      if (totalRecommends <= 1) {
+        return "";
+      }
+      return recommend.variant ? recommend.variant : "Variant " + recommend.id
+    },
+    getSignetGroup(slug: string, recommend: Recommend): SignetGroup | undefined {
       const choiceGroup = this.getChoiceGroupBySlug(slug, recommend);
       const signetGroup = this.getSignetGroupBySlug(choiceGroup?.signet);
       if (choiceGroup === undefined || signetGroup === undefined) {
@@ -35,7 +41,7 @@ export default defineComponent({
 
       return { ...signetGroup, signets };
     },
-    getChoiceGroupBySlug(slug: string, recommend: Recommendation) {
+    getChoiceGroupBySlug(slug: string, recommend: Recommend) {
       // Typescript does not like my string keys
       switch (slug) {
         case "exclusive":
@@ -56,7 +62,7 @@ export default defineComponent({
       }
       return this.appState.signetGroups.find((s) => s.slug == slug);
     },
-    setActiveRecommend(recommend: Recommendation) {
+    setActiveRecommend(recommend: Recommend) {
       const active = { ...recommend, isActive: true };
       const recommends = this.recommends.map(rec => {
         if (rec.id === active.id) {
@@ -104,7 +110,7 @@ export default defineComponent({
           @click.stop.prevent="setActiveRecommend(recommend)"
           :class="{ active: recommend.isActive }"
           class="nav-link"
-        >{{ recommend.variant ? recommend.variant : "Variant " + recommend.id }}</a>
+        >{{ findVariantName(recommends.length, recommend) }}</a>
       </li>
     </ul>
   </template>
@@ -116,19 +122,20 @@ export default defineComponent({
       :class="{ show: recommend.isActive, active: recommend.isActive }"
     >
       <div class="row">
-        <h2>{{ recommend.difficulty + 'D' }} {{ recommend.variant ? recommend.variant : "" }}</h2>
+        <h2>{{ recommend.difficulty + 'D' }} {{ findVariantName(recommends.length, recommend) }}</h2>
       </div>
       <div class="row">
-        <div class="setupGroup col">
+        <div class="col-5">
           <ElysianRealmSetup :setup-group="recommend.setup" />
+          <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive', recommend)" />
         </div>
-        <ElysianRealmSignetList :signet-group="getSignetGroup('exclusive', recommend)" />
-      </div>
-      <div class="signetGroup row">
+        <div class="col">
         <ElysianRealmSignetList :signet-group="getSignetGroup('signet1', recommend)" />
         <ElysianRealmSignetList :signet-group="getSignetGroup('signet2', recommend)" />
         <ElysianRealmSignetList :signet-group="getSignetGroup('signet3', recommend)" />
       </div>
+      </div>
+
     </div>
   </div>
   <div id="recommendations" v-else>

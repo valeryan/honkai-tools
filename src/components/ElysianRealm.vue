@@ -10,6 +10,9 @@ export default defineComponent({
       return new URL(`../assets/valkyries/${slug}.png`, import.meta.url)
         .href;
     },
+    isActiveLink(slug: string) {
+      return slug === this.$route.params.slug;
+    }
   },
   computed: {
     foundValkyrie() {
@@ -32,9 +35,13 @@ export default defineComponent({
 <template>
   <h1>Elysian Realm</h1>
   <nav>
-    <ul>
-      <li v-for="valk in appState.valkyries" :key="valk.id">
-        <router-link :to="{ name: 'ElysianRealm', params: { slug: valk.slug } }">
+    <ul class="nav">
+      <li v-for="valk in appState.valkyries" :key="valk.id" class="nav-item">
+        <router-link
+          :to="{ name: 'ElysianRealm', params: { slug: valk.slug } }"
+          :class="{ active: isActiveLink(valk.slug) }"
+          class="nav-link"
+        >
           <img class="valk-img" :alt="valk.battleSuit" :src="getImageUrl(valk.slug)" />
           {{ valk.battleSuit }}
         </router-link>

@@ -33,7 +33,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="signets col">
+  <div class="signets">
     <div class="card">
       <h2>{{ signetGroup?.flameChaser }} - {{ signetGroup?.name }}</h2>
       <ul class="list-group list-group-flush">

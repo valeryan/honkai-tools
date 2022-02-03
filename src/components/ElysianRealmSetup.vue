@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { GamePeriod, Slots } from "../models/recommendation";
+import { GamePeriod, Slots } from "../models/recommend";
 import { appStore } from "../store/app-store";
 
 export default defineComponent({

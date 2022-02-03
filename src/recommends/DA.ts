@@ -1,6 +1,6 @@
-import { Recommendation } from "../models/recommendation";
+import { ChoiceOptions, Recommend } from "../models/recommend";
 
-export const DA: Recommendation[] = [
+export const DA: Recommend[] = [
   {
     "id": 1,
     "slug": "DA",
@@ -12,27 +12,27 @@ export const DA: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "Start"
+          "choice": ChoiceOptions.start
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "Filler"
+          "choice": ChoiceOptions.filler
         },
         {
           "id": 3,
           "signetId": 3,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 4,
           "signetId": 4,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         },
         {
           "id": 5,
           "signetId": 5,
-          "choice": "Filler"
+          "choice": ChoiceOptions.filler
         }
       ]
     },
@@ -42,12 +42,12 @@ export const DA: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -57,37 +57,37 @@ export const DA: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         },
         {
           "id": 3,
           "signetId": 3,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         },
         {
           "id": 5,
           "signetId": 5,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 6,
           "signetId": 6,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 7,
           "signetId": 7,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 8,
           "signetId": 8,
-          "choice": "Filler"
+          "choice": ChoiceOptions.filler
         },
         {
           "id": 9,
           "signetId": 9,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         }
       ]
     },
@@ -97,12 +97,12 @@ export const DA: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },

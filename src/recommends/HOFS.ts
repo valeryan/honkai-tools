@@ -1,6 +1,6 @@
-import { Recommendation } from "../models/recommendation";
+import { ChoiceOptions, Recommend } from "../models/recommend";
 
-export const HOFS: Recommendation[] = [
+export const HOFS: Recommend[] = [
   {
     "id": 1,
     "slug": "HOFS",
@@ -12,12 +12,12 @@ export const HOFS: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "Start"
+          "choice": ChoiceOptions.start
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         }
       ]
     },
@@ -27,12 +27,12 @@ export const HOFS: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -42,12 +42,12 @@ export const HOFS: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -57,17 +57,17 @@ export const HOFS: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "Filler"
+          "choice": ChoiceOptions.filler
         },
         {
           "id": 3,
           "signetId": 4,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },

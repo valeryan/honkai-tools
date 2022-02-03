@@ -1,5 +1,5 @@
 import { Emblem } from "../models/emblem";
-import { Recommendation } from "../models/recommendation";
+import { Recommend } from "../models/recommend";
 import { SignetGroup } from "../models/signet";
 import { Support } from "../models/support";
 import { Valkyrie } from "../models/valkyrie";
@@ -7,7 +7,7 @@ import { Store } from "./store";
 
 interface AppData extends Object {
   valkyries: Valkyrie[];
-  recommendations: Recommendation[];
+  recommendations: Recommend[];
   signetGroups: SignetGroup[];
   emblems: Emblem[];
   supports: Support[];
@@ -28,7 +28,7 @@ class AppStore extends Store<AppData> {
     this.state.valkyries = valkyries;
   }
 
-  setRecommendations(recommendations: Recommendation[]) {
+  setRecommendations(recommendations: Recommend[]) {
     this.state.recommendations = recommendations;
   }
 

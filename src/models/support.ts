@@ -1,7 +1,7 @@
 import { BaseModel } from "./base-model";
 
 export interface Support extends BaseModel {
-  tag: string;
+  tagline: string;
   description: string;
   slug: string;
 }

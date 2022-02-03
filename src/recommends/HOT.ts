@@ -1,6 +1,6 @@
-import { Recommendation } from "../models/recommendation";
+import { ChoiceOptions, Recommend } from "../models/recommend";
 
-export const HOT: Recommendation[] = [
+export const HOT: Recommend[] = [
   {
     "id": 1,
     "slug": "HOT",
@@ -13,12 +13,12 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "Start"
+          "choice": ChoiceOptions.start
         }
       ]
     },
@@ -28,12 +28,12 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -43,12 +43,12 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -58,17 +58,17 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "Filler"
+          "choice": ChoiceOptions.filler
         },
         {
           "id": 3,
           "signetId": 4,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -99,12 +99,12 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "Start"
+          "choice": ChoiceOptions.start
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         }
       ]
     },
@@ -114,12 +114,12 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -129,12 +129,12 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },
@@ -144,17 +144,17 @@ export const HOT: Recommendation[] = [
         {
           "id": 1,
           "signetId": 1,
-          "choice": "1st"
+          "choice": ChoiceOptions.first
         },
         {
           "id": 2,
           "signetId": 2,
-          "choice": "Filler"
+          "choice": ChoiceOptions.filler
         },
         {
           "id": 3,
           "signetId": 4,
-          "choice": "2nd"
+          "choice": ChoiceOptions.second
         }
       ]
     },

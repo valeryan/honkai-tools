@@ -1,7 +1,14 @@
+export enum ChoiceOptions {
+  first = "1st",
+  second = "2nd",
+  start = "Start",
+  filler = "Filler"
+}
+
 export interface Choice extends Object {
   id: number;
   signetId: number;
-  choice: string;
+  choice: ChoiceOptions;
 }
 
 export interface ChoiceGroup extends Object {
@@ -26,7 +33,7 @@ export interface GamePeriod extends Object {
   late: SetupTypes;
 }
 
-export interface Recommendation extends Object {
+export interface Recommend extends Object {
   id: number;
   slug: string;
   difficulty: number;

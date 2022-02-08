@@ -40,10 +40,10 @@ export default defineComponent({
         <router-link
           :to="{ name: 'ElysianRealm', params: { slug: valk.slug } }"
           :class="{ active: isActiveLink(valk.slug) }"
-          class="nav-link"
+          class="nav-link text-center"
         >
           <img class="valk-img" :alt="valk.battleSuit" :src="getImageUrl(valk.slug)" />
-          {{ valk.battleSuit }}
+          <span>{{ valk.battleSuit }}</span>
         </router-link>
       </li>
     </ul>
@@ -55,5 +55,12 @@ export default defineComponent({
 .valk-img {
   max-width: 100px;
   max-height: 100px;
+}
+.nav-link {
+  max-width: 170px;
+  span {
+    text-align: center;
+    display:block;
+  }
 }
 </style>
